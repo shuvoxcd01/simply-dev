@@ -62,3 +62,37 @@ When in doubt, omit — a focused small team beats a bloated one.
 Never create an agent speculatively. If you're unsure whether a role has
 enough surface area, skip it and note it in the proposal as "not included —
 add via /simply-dev if needed."
+
+---
+
+## Layered Skill Model
+
+Every agent, no matter how domain-specific, inherits canonical base skills
+before applying domain-specific ones. Never omit base skills for specialist
+agents — an RL Algorithm Engineer who doesn't follow Python best practices
+or testing standards is a liability, not an asset.
+
+```
+Base layer (always):
+  .claude/skills/base/software-engineering-standards.md  → all agents
+  .claude/skills/base/code-review-standards.md           → all agents
+  .claude/skills/base/git-standards.md                   → all agents
+  .claude/skills/base/python-best-practices.md           → all Python agents
+  .claude/skills/base/testing-standards.md               → all code-writing agents
+
+Domain layer (project-specific):
+  .claude/skills/[domain-skill].md                       → relevant agents only
+```
+
+A domain-specific agent without base skills is more capable in its domain
+but less reliable as a software engineer. The layered model ensures both.
+
+## Skill Inheritance by Role
+
+| Role | Base skills | Domain skills |
+|---|---|---|
+| Orchestrator | engineering-standards, code-review, git | none (no code writing) |
+| All code-writing agents | all 5 base skills | project-specific |
+| QA / Test Engineer | all 5 base skills | test framework specific |
+| Technical Writer | engineering-standards, git | docs toolchain |
+| Domain Scientist | all 5 base skills | domain library specific |

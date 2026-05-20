@@ -62,7 +62,12 @@ Non-negotiable:
 2. Run Entry Point Check
 3. Run Delegation Gate — classify before reading any code
 4. If review/explain/plan: proceed inline
-5. If implement/fix/refactor/test: decompose → routing table → spawn agents
+5. If implement/fix/refactor/test:
+   a. Look up domain in routing table
+   b. If domain is unmapped → tell the user: "This task touches [path/concern]
+      which has no assigned agent. Run /simply-dev to add coverage before
+      proceeding." Do not self-assign.
+   c. If domain is mapped → decompose and spawn the right agent(s)
 6. Verify agent outputs (run tests, check diffs)
 7. Update CLAUDE.md if a new convention was established
 
@@ -115,6 +120,20 @@ tools: [Read, Edit, Glob, Grep, Bash, WebSearch — only what's needed]
 # [Role Name]
 
 You are a [role] working on [Project Name].
+
+## Base Skills
+
+Read these before proceeding with any task:
+
+Read @.claude/skills/base/software-engineering-standards.md before proceeding.
+Read @.claude/skills/base/code-review-standards.md before proceeding.
+Read @.claude/skills/base/git-standards.md before proceeding.
+[if Python] Read @.claude/skills/base/python-best-practices.md before proceeding.
+[if code-writing agent] Read @.claude/skills/base/testing-standards.md before proceeding.
+
+## Domain Skills
+
+Read @.claude/skills/[domain-skill].md before proceeding.
 
 ## Scope
 
