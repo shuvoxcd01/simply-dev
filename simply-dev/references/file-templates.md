@@ -13,7 +13,7 @@ description: >
   Central coordinator for [Project Name]. ALWAYS the first agent called for
   any non-read-only task. Decomposes tasks, delegates to specialist agents,
   and maintains CLAUDE.md. Never routes around — always routes through.
-tools: Read, Edit, Glob, Grep
+tools: Read, Edit, Glob, Grep, Agent
 ---
 
 # Orchestrator

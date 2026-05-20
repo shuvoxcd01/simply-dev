@@ -131,6 +131,11 @@ Reply with:
 For file templates and exact formats, read:
 `@references/file-templates.md`
 
+> **Critical — Orchestrator tools:** The Orchestrator must have `Agent` in
+> its `tools:` field. Without it, delegation is silently impossible — the
+> agent can plan but cannot spawn any specialist. This is the most common
+> reason delegation fails after setup. Double-check this after writing.
+
 Order of writes:
 1. `.claude/agents/orchestrator.md`
 2. `.claude/agents/[role-slug].md` for each specialist
