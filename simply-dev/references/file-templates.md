@@ -125,11 +125,38 @@ You are a [role] working on [Project Name].
 
 Read these before proceeding with any task:
 
-Read @.claude/skills/base/software-engineering-standards.md before proceeding.
-Read @.claude/skills/base/code-review-standards.md before proceeding.
-Read @.claude/skills/base/git-standards.md before proceeding.
-[if Python] Read @.claude/skills/base/python-best-practices.md before proceeding.
-[if code-writing agent] Read @.claude/skills/base/testing-standards.md before proceeding.
+[SKILL ASSIGNMENT — filled by simply-dev based on role, not copied verbatim]
+
+For implementation agents (backend, algorithm, ML engineer, etc.):
+  Read @.claude/skills/base/software-engineering-standards.md before proceeding.
+  Read @.claude/skills/base/code-review-standards.md before proceeding.
+  Read @.claude/skills/base/git-standards.md before proceeding.
+  [if Python stack] Read @.claude/skills/base/python-best-practices.md before proceeding.
+  [DO NOT add testing-standards — tests are QA's responsibility]
+
+For QA / Test Engineer only:
+  Read @.claude/skills/base/software-engineering-standards.md before proceeding.
+  Read @.claude/skills/base/code-review-standards.md before proceeding.
+  Read @.claude/skills/base/git-standards.md before proceeding.
+  [if Python stack] Read @.claude/skills/base/python-best-practices.md before proceeding.
+  Read @.claude/skills/base/testing-standards.md before proceeding.
+
+For research / science agents:
+  Read @.claude/skills/base/software-engineering-standards.md before proceeding.
+  Read @.claude/skills/base/git-standards.md before proceeding.
+  [if Python stack] Read @.claude/skills/base/python-best-practices.md before proceeding.
+  [DO NOT add code-review-standards or testing-standards — research code is
+  exploratory; applying production review standards creates wrong incentives]
+
+For Orchestrator:
+  Read @.claude/skills/base/software-engineering-standards.md before proceeding.
+  Read @.claude/skills/base/code-review-standards.md before proceeding.
+  Read @.claude/skills/base/git-standards.md before proceeding.
+  [DO NOT add python-best-practices or testing-standards — no code writing]
+
+For Technical Writer:
+  Read @.claude/skills/base/software-engineering-standards.md before proceeding.
+  Read @.claude/skills/base/git-standards.md before proceeding.
 
 ## Domain Skills
 

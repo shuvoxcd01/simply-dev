@@ -238,23 +238,24 @@ Order of writes:
 
 ### Base Skill Assignment
 
-Every agent, regardless of specialization, must `@`-import the relevant
-base skills at the top of its definition before domain-specific skills:
+Assign base skills precisely by role. Never give an agent skills outside
+its responsibility — it creates ambiguity about ownership and incentivizes
+agents to do work that belongs to another agent.
 
-| Base skill | Import by all agents | Import by code-writing agents only |
-|---|---|---|
-| `software-engineering-standards` | ✅ | |
-| `code-review-standards` | ✅ | |
-| `git-standards` | ✅ | |
-| `python-best-practices` | | ✅ if Python is in stack |
-| `testing-standards` | | ✅ except Orchestrator |
+The full assignment table is in `@references/agent-roster.md`. The critical
+rules:
 
-Format:
-```
-Read @.claude/skills/base/software-engineering-standards.md before proceeding.
-Read @.claude/skills/base/python-best-practices.md before proceeding.
-Read @.claude/skills/[domain-skill].md before proceeding.
-```
+- `testing-standards` → **QA agent only**. Never implementation agents.
+  An RL engineer assigned testing-standards may start writing tests instead
+  of delegating to QA.
+- `code-review-standards` → implementation agents + QA + Orchestrator.
+  Not research agents — their code is exploratory, not production.
+- `python-best-practices` → only if Python is in that agent's stack.
+- `software-engineering-standards` + `git-standards` → every agent without
+  exception.
+
+Always read `@references/agent-roster.md` to determine the exact set for
+each role before writing any agent file.
 
 ### Guardrails
 
@@ -293,8 +294,12 @@ the exact wording.
 
 ### v1.1.0
 - Canonical base skills: 5 skill files bundled, copied to `.claude/skills/base/`
-  on first run; all agents inherit relevant base skills
+  on first run
 - Layered skill model: base (canonical) → domain-specific (project)
+- Role-based skill assignment: skills assigned by responsibility, not blanket
+  inheritance. testing-standards → QA only; code-review → implementation +
+  QA + Orchestrator; research agents get a lighter set to preserve exploratory
+  intent
 - Diff mode: subsequent runs compare codebase against existing agents and
   propose only what changed
 - Argument parsing: `/simply-dev <instruction>` for create/update/delete

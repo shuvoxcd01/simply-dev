@@ -89,10 +89,24 @@ but less reliable as a software engineer. The layered model ensures both.
 
 ## Skill Inheritance by Role
 
-| Role | Base skills | Domain skills |
-|---|---|---|
-| Orchestrator | engineering-standards, code-review, git | none (no code writing) |
-| All code-writing agents | all 5 base skills | project-specific |
-| QA / Test Engineer | all 5 base skills | test framework specific |
-| Technical Writer | engineering-standards, git | docs toolchain |
-| Domain Scientist | all 5 base skills | domain library specific |
+Assign skills precisely — never give an agent skills for work outside its
+responsibility. Testing-standards belongs to QA, not to implementation agents.
+An RL engineer who is told to follow testing-standards may start writing tests
+instead of delegating that to QA.
+
+| Role | software-engineering-standards | code-review-standards | git-standards | python-best-practices | testing-standards |
+|---|---|---|---|---|---|
+| Orchestrator | ✅ | ✅ | ✅ | ❌ | ❌ |
+| Implementation agents (backend, algorithm, ML, etc.) | ✅ | ✅ | ✅ | ✅ if Python | ❌ |
+| QA / Test Engineer | ✅ | ✅ | ✅ | ✅ if Python | ✅ |
+| Research / Science agents | ✅ | ❌ | ✅ | ✅ if Python | ❌ |
+| DevOps / Platform / Cloud | ✅ | ✅ | ✅ | ✅ if scripting-heavy | ❌ |
+| Technical Writer | ✅ | ❌ | ✅ | ❌ | ❌ |
+| Domain Scientist | ✅ | ✅ | ✅ | ✅ if Python | ❌ |
+
+Rule of thumb:
+- `testing-standards` → QA agent only, never implementation agents
+- `code-review-standards` → agents that review or produce code for review
+- `python-best-practices` → only if Python is in the agent's stack
+- Research agents skip `code-review-standards` — their code is exploratory,
+  not production; reviewing it to production standards creates wrong incentives
