@@ -18,6 +18,22 @@ The result is an Orchestrator that coordinates specialists — a frontend dev, b
 
 ---
 
+## What it generates
+
+```
+.claude/
+├── agents/
+│   ├── orchestrator.md       ← mandatory entry point, never writes code
+│   ├── [role-slug].md        ← one per specialist
+│   └── ...
+└── skills/
+    ├── [skill-slug].md       ← focused skill references per agent
+    └── ...
+CLAUDE.md                     ← Team section appended with routing table
+```
+
+---
+
 ## Agents it can create
 
 | Role | When included |
@@ -49,20 +65,6 @@ Phase 4 — Update    Append Team section to CLAUDE.md
 
 Phases 3 and 4 only run after you explicitly approve. Nothing is written speculatively.
 
-### What gets created
-
-```
-.claude/
-├── agents/
-│   ├── orchestrator.md       ← mandatory entry point, never writes code
-│   ├── [role-slug].md        ← one per specialist
-│   └── ...
-└── skills/
-    ├── [skill-slug].md       ← focused skill references per agent
-    └── ...
-CLAUDE.md                     ← Team section appended with routing table
-```
-
 ### Delegation enforcement
 
 The generated `CLAUDE.md` includes an unconditional routing policy:
@@ -76,33 +78,34 @@ The generated `CLAUDE.md` includes an unconditional routing policy:
 
 ## Installation
 
-### As a Claude Code skill (recommended)
+Clone the repo:
 
 ```bash
-# User-level — applies to all your projects
 git clone https://github.com/shuvoxcd01/simply-dev /tmp/simply-dev
-cp -r /tmp/simply-dev/simply-dev ~/.claude/skills/
+```
 
-# Project-level — checked into git, shared with your team
+**Project-level** (checked into git, shared with your team):
+
+```bash
+mkdir -p .claude/skills
 cp -r /tmp/simply-dev/simply-dev .claude/skills/
 ```
 
-### As a slash command (alternative)
+**User-level** (applies to all your projects):
 
 ```bash
-# Copy SKILL.md content to a command file
-cp /tmp/simply-dev/simply-dev/SKILL.md .claude/commands/simply-dev.md
+mkdir -p ~/.claude/skills
+cp -r /tmp/simply-dev/simply-dev ~/.claude/skills/
 ```
-
-Then run `/simply-dev` inside any Claude Code session.
 
 ---
 
 ## Usage
 
-```
-/simply-dev
-```
+Start a Claude Code session in your project and either:
+
+- Type naturally: `set up my AI team` or `run simply-dev`
+- Or invoke directly: `/simply-dev`
 
 simply-dev will scan your codebase, propose a team, and wait for your response:
 
