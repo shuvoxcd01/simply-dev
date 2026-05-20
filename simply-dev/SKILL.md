@@ -300,6 +300,12 @@ the exact wording.
   inheritance. testing-standards → QA only; code-review → implementation +
   QA + Orchestrator; research agents get a lighter set to preserve exploratory
   intent
+- Three interaction modes: Solo (plain Claude), Direct (specialist by name),
+  Team (Orchestrator-coordinated). simply-dev no longer hijacks every session —
+  the team is opt-in, not mandatory
+- CLAUDE.md routing section rewritten as a routing guide, not an enforcement
+  policy. Delegation gate moved into Orchestrator definition only — fires when
+  Orchestrator is invoked, not on every task
 - Diff mode: subsequent runs compare codebase against existing agents and
   propose only what changed
 - Argument parsing: `/simply-dev <instruction>` for create/update/delete
