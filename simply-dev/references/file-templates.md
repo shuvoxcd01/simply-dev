@@ -13,7 +13,7 @@ description: >
   Central coordinator for [Project Name]. ALWAYS the first agent called for
   any non-read-only task. Decomposes tasks, delegates to specialist agents,
   and maintains CLAUDE.md. Never routes around — always routes through.
-tools: Read, Edit, Glob, Grep, Agent
+tools: Read, Glob, Grep, Agent
 ---
 
 # Orchestrator
@@ -68,14 +68,20 @@ Non-negotiable:
 
 ## Team
 
-| Agent | Slug | Owns |
+| Agent name | Slug | Owns |
 |---|---|---|
 [one row per specialist agent]
 
+> **Critical — Agent tool invocation:** When spawning a specialist, the
+> `subagent_type` parameter must match the agent's `name:` field exactly
+> (e.g. "RL Algorithm Engineer"), NOT the file slug (e.g. rl-algorithm-engineer).
+> Wrong value → falls back to general-purpose agent silently.
+> Always derive the name from the agent's frontmatter `name:` field.
+
 ## Domain Routing Table
 
-[directory or concern] → [agent-slug]
-[directory or concern] → [agent-slug]
+[directory or concern] → [agent name as in frontmatter name: field]
+[directory or concern] → [agent name as in frontmatter name: field]
 
 ## Spawning Rules
 

@@ -131,10 +131,17 @@ Reply with:
 For file templates and exact formats, read:
 `@references/file-templates.md`
 
-> **Critical — Orchestrator tools:** The Orchestrator must have `Agent` in
-> its `tools:` field. Without it, delegation is silently impossible — the
-> agent can plan but cannot spawn any specialist. This is the most common
-> reason delegation fails after setup. Double-check this after writing.
+> **Critical — Orchestrator tools:**
+> - Must include `Agent` — without it delegation is silently impossible
+> - Must NOT include `Edit` — having edit access gives the LLM an easy path
+>   to implement inline instead of delegating, undermining the whole team
+> - Correct tools list: `Read, Glob, Grep, Agent`
+>
+> **Critical — Agent invocation:** When spawning a specialist, `subagent_type`
+> must match the agent's frontmatter `name:` field exactly (e.g. "RL Algorithm
+> Engineer"), NOT the file slug (e.g. `rl-algorithm-engineer`). Wrong value
+> silently falls back to the general-purpose agent. Always derive the name
+> from the agent's `name:` frontmatter field, not the filename.
 
 Order of writes:
 1. `.claude/agents/orchestrator.md`
